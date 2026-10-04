@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>年収の壁トラッカー2026｜毎月の給料を記録して「あといくら」がわかる - かべノート</title>
+<meta name="description" content="パート・学生アルバイト向け。毎月の給料を入れるだけで、2026年（令和8年）の年収見込みと、119万・130万・136万・150万・160万・178万など各「年収の壁」まであといくら働けるかを自動計算。登録不要・データは端末内だけに保存。">
+<link rel="canonical" href="https://kabenote.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="かべノート">
+<meta property="og:title" content="年収の壁トラッカー2026｜あといくら働ける？">
+<meta property="og:description" content="毎月の給料を記録して、年収の壁まで「あと月いくら」かを自動計算。パート・学生アルバイト向け。">
+<meta property="og:url" content="https://kabenote.pages.dev/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=IBM+Plex+Sans+JP:wght@400;600;700&family=Roboto+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true"><span></span><span></span><span></span></span>かべノート</a>
+    <span class="yr">2026年（令和8年）の収入用</span>
+  </header>
+
+  <h1>年収の壁、<br class="sp">あといくら？</h1>
+  <p class="lead">給料が振り込まれるたびに金額を入れるだけ。今年の年収見込みと、それぞれの「壁」まであといくら働けるかを自動で計算します。登録不要で、入力した数字はこの端末の中にだけ保存されます。</p>
+
+  <section class="card setup" aria-labelledby="setup-h">
+    <h2 id="setup-h">あなたの立場</h2>
+    <div class="roles" role="radiogroup" aria-label="立場">
+      <label class="role"><input type="radio" name="role" value="spouse" checked><span><b>パート・アルバイト</b><small>配偶者の扶養に入っている</small></span></label>
+      <label class="role"><input type="radio" name="role" value="student"><span><b>学生アルバイト</b><small>親の扶養に入っている（19〜22歳）</small></span></label>
+      <label class="role"><input type="radio" name="role" value="self"><span><b>自分の税金だけ見たい</b><small>扶養には入っていない</small></span></label>
+    </div>
+    <div class="opts">
+      <label class="chk" id="age60wrap"><input type="checkbox" id="age60">60歳以上</label>
+      <label class="chk"><input type="checkbox" id="big">勤務先の従業員が51人以上</label>
+      <label class="chk"><input type="checkbox" id="h20">週20時間以上働いている</label>
+    </div>
+    <p class="notice" id="shahoNotice" hidden></p>
+  </section>
+
+  <section class="card summary" aria-labelledby="sum-h">
+    <div class="sumhead">
+      <h2 id="sum-h">今年の年収見込み</h2>
+      <span class="badge" id="sampleBadge" hidden>例の数字を表示中</span>
+    </div>
+    <div class="big">
+      <div><span class="k">税金の計算に使う額</span><span class="v" id="taxTotal">0円</span></div>
+      <div><span class="k">社会保険の扶養に使う額<small>（交通費を含む）</small></span><span class="v" id="shahoTotal">0円</span></div>
+    </div>
+    <p class="basis" id="basis"></p>
+    <div class="scale" id="scale" aria-hidden="true"></div>
+    <ul class="walls" id="walls"></ul>
+  </section>
+
+  <section class="card target" aria-labelledby="tg-h">
+    <h2 id="tg-h">この壁を超えないように働くなら</h2>
+    <label for="goal" class="sr">目標にする壁</label>
+    <select id="goal"></select>
+    <p class="answer" id="answer"></p>
+  </section>
+
+  <section class="card months" aria-labelledby="m-h">
+    <div class="mhead">
+      <h2 id="m-h">毎月の給料</h2>
+      <label class="chk small"><input type="checkbox" id="proj" checked>未入力の月は平均で予測する</label>
+    </div>
+    <p class="help">給料が<strong>振り込まれた月</strong>に、明細の「総支給額」を入れます（税金や保険料が引かれる前の金額）。交通費（通勤手当）は分けて入れてください。税金の計算には含まれず、社会保険の扶養の判定には含まれるためです。</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">支給月</th><th scope="col">給料（交通費を除く）</th><th scope="col">交通費</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="tools">
+      <button class="btn" id="clearAll">すべて消して自分の数字を入れる</button>
+      <button class="btn" id="exportBtn">バックアップを保存</button>
+      <label class="btn filebtn">バックアップを読み込む<input type="file" id="importFile" accept="application/json,.json"></label>
+      <span class="msg" id="msg" role="status" hidden></span>
+    </div>
+  </section>
+
+  <div class="ad" hidden></div>
+
+  <section class="explain">
+    <h2>2026年の「年収の壁」早見表</h2>
+    <p class="note">2026年1〜12月に支払われた給料で判定します。金額は給与収入のみの場合の目安です。</p>
+    <div class="tablewrap">
+      <table class="ref">
+        <thead><tr><th scope="col">年収</th><th scope="col">超えると</th><th scope="col">関係する人</th></tr></thead>
+        <tbody>
+          <tr><td>119万円</td><td>本人に住民税（所得割）がかかり始める。地域によっては約112万円から均等割がかかる</td><td>全員</td></tr>
+          <tr><td>130万円</td><td>社会保険の扶養から外れ、自分で健康保険・年金に入る（交通費も含めて判定）</td><td>配偶者・親の扶養の人（19〜22歳を除く）</td></tr>
+          <tr><td>136万円</td><td>配偶者控除・扶養控除の対象外になり、配偶者特別控除・特定親族特別控除に切り替わる</td><td>扶養している家族の税金</td></tr>
+          <tr><td>150万円</td><td>19〜22歳が社会保険の扶養から外れる</td><td>学生など19〜22歳</td></tr>
+          <tr><td>159万円</td><td>親が受けられる特定親族特別控除（最大63万円）が減り始める。197万円で0に</td><td>学生の親の税金</td></tr>
+          <tr><td>169万円</td><td>配偶者特別控除（最大38万円）が減り始める。約207万円で0に</td><td>配偶者の税金</td></tr>
+          <tr><td>178万円</td><td>本人に所得税がかかり始める</td><td>全員</td></tr>
+          <tr><td>180万円</td><td>60歳以上の人が社会保険の扶養から外れる</td><td>60歳以上</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>2026年に変わったこと</h3>
+    <ul class="changes">
+      <li><b>所得税がかからない上限が178万円に。</b>基礎控除が104万円、給与所得控除の最低額が74万円に引き上げられました（2026年・2027年分）。年末調整で反映されます。</li>
+      <li><b>扶養の税金の上限が136万円に。</b>配偶者控除・扶養控除の対象となる所得の上限が62万円に上がりました。</li>
+      <li><b>住民税がかからない目安が119万円に。</b>2026年の収入にかかる2027年度の住民税から適用されます。</li>
+      <li><b>社会保険の扶養は「契約上の金額」で判定。</b>2026年4月から、雇用契約書などに書かれた賃金で年収を見込む方法になりました。契約にない残業代は含まれません。</li>
+      <li><b>「106万円の壁」は2026年10月に撤廃。</b>従業員51人以上の勤務先で週20時間以上働く人は、収入にかかわらず社会保険に加入します（学生を除く）。</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <div><h3>いつの給料で計算しますか？</h3><p>税金は、1月1日〜12月31日に<b>支払われた</b>給料で計算します。12月に働いた分が1月に振り込まれる場合、その分は翌年の収入になります。</p></div>
+    <div><h3>交通費は含めますか？</h3><p>税金の計算には含めません（非課税の通勤手当の範囲内の場合）。社会保険の扶養の判定では含めます。このため、入力欄を分けています。</p></div>
+    <div><h3>130万円を1か月だけ超えそうな月があります</h3><p>2026年4月からは、雇用契約書などに書かれた賃金から年収を見込んで判定します。契約にない一時的な残業で超えた場合の扱いは、加入している健康保険によって異なることがあるため、家族の勤務先の健康保険に確認してください。</p></div>
+    <div><h3>データはどこに保存されますか？</h3><p>この端末のブラウザの中だけです。サーバーには送信されません。機種変更やブラウザのデータ削除に備えて、「バックアップを保存」でファイルを残しておくと安心です。</p></div>
+  </section>
+
+  <footer class="foot">
+    <span>計算結果は給与収入のみの場合の目安です。ほかの所得がある場合や、勤務先・健康保険・お住まいの自治体によって扱いが異なる場合があります。最終的な判断は各窓口にご確認ください。</span>
+    <span>情報確認日：2026年9月30日</span>
+    <span>当サイトは広告を含む場合があります。</span>
+    <span class="flinks"><a href="/about/">運営者情報・お問い合わせ</a><a href="/privacy/">プライバシーポリシー</a></span>
+  </footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
