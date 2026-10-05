@@ -184,3 +184,13 @@ details.more[open] summary{margin-bottom:10px}
 .klist span{font-size:13px;color:var(--sub)}
 .kread{display:flex;flex-direction:column;gap:6px;margin-top:6px}
 .kread a{font-size:14px}
+/* PR（アフィリエイト）枠 */
+.pr{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.pr p{margin:0}
+.pr-h{font-weight:700;display:flex;align-items:center;gap:8px}
+.pr-tag{font-size:11px;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:4px;padding:0 5px;line-height:1.6;flex:none}
+.pr-t{font-size:14px;color:var(--sub)}
+.pr-l{font-size:14.5px;font-weight:600}
+.pr-ban{display:flex;justify-content:center;margin-top:4px}
+.pr-ban img{max-width:100%;height:auto;border-radius:6px}
+.px{position:absolute;width:1px;height:1px;border:0}
