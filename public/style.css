@@ -194,3 +194,5 @@ details.more[open] summary{margin-bottom:10px}
 .pr-ban{display:flex;justify-content:center;margin-top:4px}
 .pr-ban img{max-width:100%;height:auto;border-radius:6px}
 .px{position:absolute;width:1px;height:1px;border:0}
+.pr-ls{margin:0;padding-left:1.2em;font-size:14.5px;font-weight:600;display:flex;flex-direction:column;gap:4px}
+.pr-ban{flex-wrap:wrap;gap:12px}
