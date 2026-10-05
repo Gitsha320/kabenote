@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>副業20万円トラッカー2026｜確定申告が必要か、毎月の記録で自動判定 - かべノート</title>
+<meta name="description" content="会社員の副業向け。毎月の報酬と経費を入れるだけで、2026年の副業所得が「20万円の壁」を超えるか、あと月いくらまで稼げるかを自動計算。確定申告・住民税の申告が必要かもわかります。登録不要。">
+<link rel="canonical" href="https://kabenote.pages.dev/fukugyo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="かべノート">
+<meta property="og:title" content="副業20万円トラッカー2026｜確定申告が必要か自動判定">
+<meta property="og:description" content="毎月の報酬と経費を記録して、副業の「20万円の壁」まであといくらかを自動計算。">
+<meta property="og:url" content="https://kabenote.pages.dev/fukugyo/">
+<meta property="og:image" content="https://kabenote.pages.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=IBM+Plex+Sans+JP:wght@400;600;700&family=Roboto+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true"><span></span><span></span><span></span></span>かべノート</a>
+    <nav class="tnav" aria-label="ツール"><a href="/">年収の壁</a><a href="/fukugyo/" aria-current="page">副業20万円</a></nav>
+  </header>
+
+  <h1>副業の「20万円」、<br class="sp">あといくら？</h1>
+  <p class="lead">副業の報酬と経費を、毎月入れるだけ。今年の副業の所得が20万円を超えて確定申告が必要になるか、あと月いくらまでなら超えないかを自動で計算します。会社員（年末調整を受けている人）向けです。入力した数字はこの端末の中にだけ保存されます。</p>
+
+  <section class="card setup" aria-labelledby="setup-h">
+    <h2 id="setup-h">あなたの副業</h2>
+    <div class="opts col">
+      <label class="chk"><input type="checkbox" id="hasSalary">アルバイトなど、給料をもらう副業もある</label>
+      <label class="chk"><input type="checkbox" id="filing">医療費控除・ふるさと納税（6自治体以上）・住宅ローン控除1年目などで、確定申告をする予定</label>
+    </div>
+  </section>
+
+  <section class="card summary" aria-labelledby="sum-h">
+    <div class="sumhead">
+      <h2 id="sum-h">今年の副業の所得（見込み）</h2>
+      <span class="badge" id="sampleBadge" hidden>例の数字を表示中</span>
+    </div>
+    <div class="big one">
+      <div><span class="k">判定に使う金額<small>（報酬 − 経費 ＋ 副業の給料）</small></span><span class="v" id="judged">0円</span></div>
+    </div>
+    <p class="basis" id="basis"></p>
+    <div class="scale" id="scale" aria-hidden="true"></div>
+    <div class="verdict" id="verdict"></div>
+  </section>
+
+  <section class="card target" aria-labelledby="tg-h">
+    <h2 id="tg-h">20万円を超えないようにするなら</h2>
+    <p class="answer" id="answer"></p>
+  </section>
+
+  <section class="card months" aria-labelledby="m-h">
+    <div class="mhead">
+      <h2 id="m-h">毎月の記録</h2>
+      <label class="chk small"><input type="checkbox" id="proj" checked>未入力の月は平均で予測する</label>
+    </div>
+    <p class="help"><b>報酬・売上</b>は、報酬が確定した月（ふつうは請求した月）に入れます。手数料などが引かれる前の金額です。<b>経費</b>は、副業のために使ったお金（ソフト代、通信費の副業分、材料費など）です。</p>
+    <div class="tablewrap">
+      <table id="tbl">
+        <thead><tr><th scope="col">月</th><th scope="col">報酬・売上</th><th scope="col">経費</th><th scope="col" class="sal">副業の給料</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="tools">
+      <button class="btn" id="clearAll">すべて消して自分の数字を入れる</button>
+      <button class="btn" id="exportBtn">バックアップを保存</button>
+      <label class="btn filebtn">バックアップを読み込む<input type="file" id="importFile" accept="application/json,.json"></label>
+      <span class="msg" id="msg" role="status" hidden></span>
+    </div>
+  </section>
+
+  <div class="ad" hidden></div>
+
+  <section class="explain">
+    <h2>副業の「20万円ルール」とは</h2>
+    <p class="note">会社で年末調整を受けている人は、給料以外の所得（副業の利益など）が1年間で20万円以下なら、所得税の確定申告をしなくてよいというルールです。</p>
+    <ul class="changes">
+      <li><b>20万円は「売上」ではなく「所得」。</b>報酬から経費を引いた金額で判定します。売上が30万円でも、経費が12万円なら所得は18万円です。</li>
+      <li><b>給料をもらう副業は、収入そのもので判定。</b>アルバイトなど2か所目の給料は、経費を引かずに金額をそのまま足します。</li>
+      <li><b>20万円以下でも住民税の申告は必要。</b>確定申告が不要でも、お住まいの市区町村に住民税の申告をする必要があります。</li>
+      <li><b>確定申告をするなら、20万円以下でも含める。</b>医療費控除などで確定申告をする場合は、副業の所得も全部含めて申告します。</li>
+      <li><b>2026年分の確定申告は、2027年2月16日〜3月15日。</b></li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <div><h3>経費にできるのはどんなもの？</h3><p>副業の仕事のために使ったお金です。たとえば、仕事で使うソフトやサービスの利用料、材料費、仕事のための交通費などです。スマホ代やネット代のように私用と共用のものは、仕事で使った割合の分だけにします。レシートや明細は残しておきましょう。</p></div>
+    <div><h3>赤字の月があったら？</h3><p>このツールでは、報酬と経費の差し引きを1年分まとめて計算します。年間で赤字になった場合、判定に使う金額は0円として扱います。</p></div>
+    <div><h3>給料をもらう副業だけの場合は？</h3><p>2か所目の給料と給料以外の所得の合計が20万円を超えると、確定申告が必要です。ただし、給料の合計から各種控除を引いた額が150万円以下などの条件を満たすと不要になる場合があります。くわしくは国税庁の案内を確認してください。</p></div>
+    <div><h3>データはどこに保存されますか？</h3><p>この端末のブラウザの中だけです。サーバーには送信されません。機種変更に備えて、「バックアップを保存」でファイルを残しておくと安心です。</p></div>
+  </section>
+
+  <footer class="foot">
+    <span>計算結果は目安です。本業が会社員で年末調整を受けている場合を想定しています。個別の状況によって扱いが異なる場合があるため、最終的には税務署やお住まいの市区町村にご確認ください。</span>
+    <span>情報確認日：2026年10月5日</span>
+    <span>当サイトは広告を含む場合があります。</span>
+    <span class="flinks"><a href="/">年収の壁トラッカー</a><a href="/about/">運営者情報・お問い合わせ</a><a href="/privacy/">プライバシーポリシー</a></span>
+  </footer>
+</div>
+<script src="/fukugyo.js"></script>
+</body>
+</html>

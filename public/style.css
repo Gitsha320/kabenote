@@ -117,3 +117,20 @@ tr.future td.m{color:var(--sub)}
   .yen{gap:2px;font-size:12px}
   .yen input{font-size:15px;padding:6px 5px}
 }
+
+/* ---------- ツール切り替え・副業トラッカー ---------- */
+.tnav{display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px}
+.tnav a{font-size:13px;font-weight:700;text-decoration:none;color:var(--sub);padding:4px 12px;border-radius:999px}
+.tnav a[aria-current="page"]{background:var(--navy);color:var(--paper)}
+.opts.col{flex-direction:column;gap:8px}
+.opts.col .chk{align-items:flex-start;line-height:1.55}
+.opts.col .chk input{margin-top:3px;flex:none}
+.big.one{grid-template-columns:1fr}
+.verdict{padding:14px;border-radius:12px;border-left:5px solid var(--ok);background:var(--ok-bg)}
+.verdict.near{border-left-color:var(--near);background:var(--near-bg)}
+.verdict.over{border-left-color:var(--over);background:var(--over-bg)}
+.verdict .vh{margin:0;font-family:var(--f-head);font-weight:800;font-size:18px}
+.verdict.ok .vh{color:var(--ok)}.verdict.near .vh{color:var(--near)}.verdict.over .vh{color:var(--over)}
+.verdict .vs{margin:2px 0 0;font-size:14.5px}
+.verdict ul{margin:8px 0 0;padding-left:1.2em;font-size:13.5px;display:flex;flex-direction:column;gap:4px}
+#tbl.nosal .sal{display:none}
