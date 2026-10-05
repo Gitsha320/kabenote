@@ -50,11 +50,11 @@
         <label class="fld sm"><span>23歳以上</span><input type="number" min="0" max="9" id="d23" value="0"></label>
       </div>
     </fieldset>
-    <details class="more">
+    <details class="more" id="moreBox">
       <summary>iDeCo・副業がある場合</summary>
       <div class="form2">
         <label class="fld"><span>iDeCoの掛金（年額）</span><span class="yen"><input type="text" inputmode="numeric" id="ideco">円</span></label>
-        <label class="fld"><span>副業の所得（報酬−経費、年額）</span><span class="yen"><input type="text" inputmode="numeric" id="side">円</span><button type="button" class="btn small" id="useSide">副業20万円トラッカーの見込みを使う</button></label>
+        <label class="fld"><span>副業の所得（報酬−経費、年額）</span><small>業務委託・ネット販売など、給料以外の副業の分です。アルバイトなど給料をもらう副業は、上の「年収」に足して入れてください。</small><span class="yen"><input type="text" inputmode="numeric" id="side">円</span><button type="button" class="btn small" id="useSide">副業20万円トラッカーの見込みを使う</button></label>
       </div>
     </details>
   </section>
@@ -63,6 +63,7 @@
     <h2 id="res-h">上限額の目安</h2>
     <div class="big one"><div><span class="k">自己負担2,000円で寄付できる目安</span><span class="v" id="limit">—</span></div></div>
     <p class="basis" id="safe"></p>
+    <div class="verdict near" id="sideNote" hidden></div>
     <details class="more">
       <summary>計算の内訳を見る</summary>
       <dl class="calc" id="detail"></dl>
@@ -77,6 +78,7 @@
       <li><b>上限は「住民税の所得割」で決まる。</b>上限額 ＝ 住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円 で計算します。</li>
       <li><b>2026年は所得税率が下がる人がいる。</b>基礎控除と給与所得控除が引き上げられたため、所得税率が10%から5%に下がる人は、上限額が前年より少し低くなることがあります。</li>
       <li><b>2026年分は12月31日までに寄付。</b>上限は2026年1月〜12月に支払われる給料（年収）で決まるので、年末に向けて見込みを確認しておきましょう。</li>
+      <li><b>副業がある人は申告に注意。</b>副業の所得が20万円を超えて確定申告をする場合、ワンストップ特例は使えないので、確定申告でふるさと納税も申告します。20万円以下でも住民税の申告をするときは、その申告にふるさと納税の寄付も必ず含めます（含めないとワンストップ特例が無効になります）。</li>
       <li><b>上限ぎりぎりは避ける。</b>年収の見込みがずれると上限も変わります。目安の9割くらいにとどめると安心です。</li>
     </ul>
     <h3>「年収」はいつからいつまで？</h3>

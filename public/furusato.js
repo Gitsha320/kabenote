@@ -71,6 +71,13 @@
     var r = compute({ income: S.income, shaho: shahoVal(), sp: S.sp, d16: S.d16, d19: S.d19, d23: S.d23, ideco: S.ideco, side: S.side });
     $("limit").textContent = S.income ? (r.limit > 2000 ? "約 " + yen(r.limit) : "0円（住民税の所得割がかからないため）") : "—";
     $("safe").innerHTML = r.limit > 2000 ? "年収の見込みがずれても安心な目安：<b>" + yen(Math.floor(r.limit * 0.9 / 1000) * 1000) + "</b> くらいまで" : "";
+    var sn = $("sideNote");
+    if (S.side > 0) {
+      sn.hidden = false;
+      sn.innerHTML = S.side > 200000
+        ? '<p class="vh">副業があるので、確定申告で申告します</p><p class="vs">副業の所得が20万円を超えるため、確定申告が必要です。この場合<b>ワンストップ特例は使えない</b>ので、確定申告でふるさと納税の寄付（寄附金控除）もあわせて申告してください。</p>'
+        : '<p class="vh">住民税の申告にふるさと納税も含めます</p><p class="vs">副業の所得が20万円以下なら所得税の確定申告は不要ですが、<b>住民税の申告</b>は必要です。その申告にふるさと納税の寄付を含めないと、ワンストップ特例が無効になってしまいます。確定申告でまとめて申告する方法もあります。</p>';
+    } else sn.hidden = true;
     $("detail").innerHTML = [
       ["給与所得", yen(r.ks)], ["合計所得（副業を含む）", yen(r.total)],
       ["所得税の課税所得", yen(r.kIT)], ["所得税率", Math.round(r.rate * 100) + "%"],
@@ -106,5 +113,5 @@
     $("useSide").textContent = "副業トラッカーの見込み（" + yen(v) + "）を入れました";
   });
 
-  fill(); render();
+  fill(); if (S.side > 0 || S.ideco > 0) $("moreBox").open = true; render();
 })();
