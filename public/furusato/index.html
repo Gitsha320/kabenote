@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ふるさと納税の上限額シミュレーター2026｜年収と家族構成から目安を計算 - かべノート</title>
+<meta name="description" content="2026年（令和8年）の税制改正（基礎控除104万円・給与所得控除74万円）に対応。年収・家族構成・社会保険料・iDeCo・副業の所得から、ふるさと納税で自己負担2,000円になる上限額の目安を計算します。登録不要。">
+<link rel="canonical" href="https://kabenote.pages.dev/furusato/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="かべノート">
+<meta property="og:title" content="ふるさと納税の上限額シミュレーター2026">
+<meta property="og:description" content="2026年の税制改正に対応。年収と家族構成から、ふるさと納税の上限額の目安を計算。">
+<meta property="og:url" content="https://kabenote.pages.dev/furusato/">
+<meta property="og:image" content="https://kabenote.pages.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=IBM+Plex+Sans+JP:wght@400;600;700&family=Roboto+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true"><span></span><span></span><span></span></span>かべノート</a>
+    <nav class="tnav" aria-label="ツール"><a href="/">年収の壁</a><a href="/fukugyo/">副業20万円</a><a href="/furusato/" aria-current="page">ふるさと納税</a></nav>
+  </header>
+
+  <h1>ふるさと納税、<br class="sp">いくらまでできる？</h1>
+  <p class="lead">今年の年収と家族構成を入れると、自己負担が2,000円で済む寄付額の上限の目安を計算します。2026年（令和8年）の税制改正（基礎控除・給与所得控除の引き上げ）に対応しています。会社員の給与収入を想定しています。</p>
+
+  <section class="card setup" aria-labelledby="in-h">
+    <h2 id="in-h">あなたの収入と家族</h2>
+    <div class="form2">
+      <label class="fld"><span>今年の年収（給料の総支給額・見込み）</span><span class="yen"><input type="text" inputmode="numeric" id="income" aria-describedby="income-h">円</span><small id="income-h">賞与を含む、税金や保険料が引かれる前の金額です。</small></label>
+      <label class="fld"><span>社会保険料（年額）</span><span class="yen"><input type="text" inputmode="numeric" id="shaho">円</span><label class="chk small"><input type="checkbox" id="shahoAuto" checked>年収から自動で見積もる（約15%）</label></label>
+    </div>
+    <fieldset class="grp">
+      <legend>配偶者</legend>
+      <div class="seg" role="radiogroup">
+        <label><input type="radio" name="sp" value="none" checked>いない・共働き</label>
+        <label><input type="radio" name="sp" value="dep">扶養している（配偶者の年収136万円以下）</label>
+      </div>
+    </fieldset>
+    <fieldset class="grp">
+      <legend>扶養している家族（16歳未満の子どもは数えません）</legend>
+      <div class="kids">
+        <label class="fld sm"><span>16〜18歳</span><input type="number" min="0" max="9" id="d16" value="0"></label>
+        <label class="fld sm"><span>19〜22歳</span><input type="number" min="0" max="9" id="d19" value="0"></label>
+        <label class="fld sm"><span>23歳以上</span><input type="number" min="0" max="9" id="d23" value="0"></label>
+      </div>
+    </fieldset>
+    <details class="more">
+      <summary>iDeCo・副業がある場合</summary>
+      <div class="form2">
+        <label class="fld"><span>iDeCoの掛金（年額）</span><span class="yen"><input type="text" inputmode="numeric" id="ideco">円</span></label>
+        <label class="fld"><span>副業の所得（報酬−経費、年額）</span><span class="yen"><input type="text" inputmode="numeric" id="side">円</span><button type="button" class="btn small" id="useSide">副業20万円トラッカーの見込みを使う</button></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card summary" aria-labelledby="res-h">
+    <h2 id="res-h">上限額の目安</h2>
+    <div class="big one"><div><span class="k">自己負担2,000円で寄付できる目安</span><span class="v" id="limit">—</span></div></div>
+    <p class="basis" id="safe"></p>
+    <details class="more">
+      <summary>計算の内訳を見る</summary>
+      <dl class="calc" id="detail"></dl>
+    </details>
+  </section>
+
+  <div class="ad" hidden></div>
+
+  <section class="explain">
+    <h2>ふるさと納税の上限額の考え方</h2>
+    <ul class="changes">
+      <li><b>上限は「住民税の所得割」で決まる。</b>上限額 ＝ 住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円 で計算します。</li>
+      <li><b>2026年は所得税率が下がる人がいる。</b>基礎控除と給与所得控除が引き上げられたため、所得税率が10%から5%に下がる人は、上限額が前年より少し低くなることがあります。</li>
+      <li><b>2026年分は12月31日までに寄付。</b>今年の年収で上限が決まるので、年末に向けて見込みを確認しておきましょう。</li>
+      <li><b>上限ぎりぎりは避ける。</b>年収の見込みがずれると上限も変わります。目安の9割くらいにとどめると安心です。</li>
+    </ul>
+    <p class="note">住宅ローン控除・医療費控除などを受ける場合や、年収が高い場合（年収850万円を超えるなど）は、実際の上限と差が出やすくなります。正確な金額は、源泉徴収票の数字を使ったシミュレーションや税理士への確認をおすすめします。年収1億円以上の人には別の上限があります。</p>
+  </section>
+
+  <footer class="foot">
+    <span>計算結果は目安です。給与収入のみ（＋入力した副業の所得）を想定し、生命保険料控除・医療費控除・住宅ローン控除などは含めていません。</span>
+    <span>情報確認日：2026年10月5日</span>
+    <span>当サイトは広告を含む場合があります。</span>
+    <span class="flinks"><a href="/">年収の壁トラッカー</a><a href="/fukugyo/">副業20万円トラッカー</a><a href="/about/">運営者情報・お問い合わせ</a><a href="/privacy/">プライバシーポリシー</a></span>
+  </footer>
+</div>
+<script src="/furusato.js"></script>
+</body>
+</html>
