@@ -84,10 +84,10 @@
       rn.hidden = false;
       if (old.rate > r.rate) {
         rn.className = "verdict near";
-        rn.innerHTML = '<p class="vh">あなたは「所得税率が下がる人」にあたります</p><p class="vs">所得税率が去年のルールの' + p(old.rate) + 'から' + p(r.rate) + 'に下がるため、上限額は去年のルールで計算した約' + yen(old.limit) + 'より低い約' + yen(r.limit) + 'になります。</p>';
+        rn.innerHTML = '<p class="vh">あなたの所得税率は、2026年分（今年）に下がります</p><p class="vs">今の入力（年収' + yen(S.income) + '）だと、所得税率は去年（2025年分）のルールの' + p(old.rate) + 'から、今年（2026年分）のルールの' + p(r.rate) + 'に下がります。そのため、2026年中に寄付できる上限額は、去年のルールで計算した約' + yen(old.limit) + 'より低い約' + yen(r.limit) + 'になります。</p>';
       } else {
         rn.className = "verdict";
-        rn.innerHTML = '<p class="vh">所得税率は去年と同じです（' + p(r.rate) + '）</p><p class="vs">税率が下がる人にはあたらないので、上限額は去年のルールで計算した約' + yen(old.limit) + 'から大きくは変わりません。</p>';
+        rn.innerHTML = '<p class="vh">あなたの所得税率は、2026年分（今年）も去年（2025年分）と同じ' + p(r.rate) + 'です</p><p class="vs">今の入力（年収' + yen(S.income) + '）だと、税率が下がる人にはあたりません。2026年中に寄付できる上限額は、去年のルールで計算した約' + yen(old.limit) + 'から大きくは変わりません。</p>';
       }
     }
     var zero = !!S.income && r.limit <= 2000;
