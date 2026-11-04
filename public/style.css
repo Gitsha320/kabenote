@@ -176,6 +176,7 @@ details.more[open] summary{margin-bottom:10px}
 .kexh{font-weight:700}
 .kcta{margin-top:10px;border:1.5px solid var(--pen);background:var(--pen-soft);border-radius:12px;padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .kcta p{margin:0;flex:1 1 280px}
+.kcta ul{margin:0;padding-left:1.2em;flex:1 1 100%}
 .kcta .btn{text-decoration:none;background:var(--navy);color:var(--paper);border-color:var(--navy)}
 .klist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .klist a{display:flex;flex-direction:column;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink)}
