@@ -75,7 +75,22 @@ def books(path, indent):
     s = s[:j] + '\n\n' + indent + b + s[j:]
     open(f, 'w', encoding='utf-8').write(s); print(path)
 
+def furusato_kiji():
+    """解説記事（年収いくらから）にも、ふるさと納税ページと同じ楽天のカードとリンクを置く。リンクのコードはページ側のものをそのまま使う"""
+    src = open(os.path.join(PUB, 'furusato/index.html'), encoding='utf-8').read()
+    m = re.search(r'<p class="pr-l">.*?</p>', src, re.S)
+    assert m, 'furusato page link not found'
+    f = os.path.join(PUB, 'kiji/furusato-nenshu-ikura/index.html'); s = clean(open(f, encoding='utf-8').read())
+    b = aside('furuki', '上限額がわかったら、寄付先を選ぶ',
+              '2026年分の寄付は12月31日までです。年末は申し込みが集中するので、早めに決めてください。楽天ふるさと納税なら、楽天市場と同じ感覚で返礼品を探せます。',
+              FURU[:3], '寄付額')
+    b = b.replace('</aside><!--/pr:furuki-->', '\n    ' + m.group(0) + '\n  </aside><!--/pr:furuki-->')
+    anchor = '<div class="kcta"><p>自分の年収'
+    assert anchor in s
+    s = s.replace(anchor, b + '\n\n    ' + anchor, 1)
+    open(f, 'w', encoding='utf-8').write(s); print('kiji furusato')
+
 if __name__ == '__main__':
-    furusato(); nencho()
+    furusato(); nencho(); furusato_kiji()
     books('fukugyo/index.html', '  ')
     books('kiji/fukugyo-keihi/index.html', '    ')
