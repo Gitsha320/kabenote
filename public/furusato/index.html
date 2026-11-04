@@ -32,7 +32,7 @@
   <section class="card setup" aria-labelledby="in-h">
     <h2 id="in-h">あなたの収入と家族</h2>
     <div class="form2">
-      <label class="fld"><span>2026年の年収（見込み）</span><span class="yen"><input type="text" inputmode="numeric" id="income" aria-describedby="income-h">円</span><small id="income-h"><b>2026年1月1日〜12月31日に支払われる</b>給料と賞与の合計（税金や保険料が引かれる前の総支給額）です。12月に支払われる給料・冬のボーナスまで含めた見込みで入れてください。年末にもらう源泉徴収票の「支払金額」にあたります。</small></label>
+      <label class="fld"><span>2026年の年収（見込み）</span><span class="yen"><input type="text" inputmode="numeric" id="income" aria-describedby="income-h">円</span><small id="income-h"><b>2026年1月1日〜12月31日に支払われる</b>給料と賞与の合計（税金や保険料が引かれる前の総支給額）です。12月に支払われる給料・冬のボーナスまで含めた見込みで入れてください。年末にもらう源泉徴収票の「支払金額」にあたります。</small><small class="side-h"><b>副業がある場合</b>：給料をもらう副業（アルバイトなど）は、この年収に足してください。業務委託・ネット販売など給料以外の副業は足さず、<a href="#moreBox" id="openMore">下の「副業の所得」欄</a>に入れます。</small></label>
       <label class="fld"><span>社会保険料（年額）</span><span class="yen"><input type="text" inputmode="numeric" id="shaho">円</span><label class="chk small"><input type="checkbox" id="shahoAuto" checked>年収から自動で見積もる（約15%）</label></label>
     </div>
     <fieldset class="grp">
@@ -51,7 +51,7 @@
       </div>
     </fieldset>
     <details class="more" id="moreBox">
-      <summary>iDeCo・副業がある場合</summary>
+      <summary>副業・iDeCoがある場合（ここに入力）</summary>
       <div class="form2">
         <label class="fld"><span>iDeCoの掛金（年額）</span><span class="yen"><input type="text" inputmode="numeric" id="ideco">円</span></label>
         <label class="fld"><span>副業の所得（報酬−経費、年額）</span><small>業務委託・ネット販売など、給料以外の副業の分です。アルバイトなど給料をもらう副業は、上の「年収」に足して入れてください。</small><span class="yen"><input type="text" inputmode="numeric" id="side">円</span><button type="button" class="btn small" id="useSide">副業20万円トラッカーの見込みを使う</button></label>
@@ -65,6 +65,7 @@
     <p class="basis" id="safe"></p>
     <p class="basis" id="zeroNote" hidden>上限額が0円なので、今年の寄付は見送って問題ありません。住民税がかかる年収になったときに、あらためて計算してください。</p>
     <div class="verdict near" id="sideNote" hidden></div>
+    <div class="verdict" id="rateNote" hidden></div>
     <details class="more">
       <summary>計算の内訳を見る</summary>
       <dl class="calc" id="detail"></dl>
@@ -84,7 +85,7 @@
     <h2>ふるさと納税の上限額の考え方</h2>
     <ul class="changes">
       <li><b>上限は「住民税の所得割」で決まる。</b>上限額 ＝ 住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円 で計算します。</li>
-      <li><b>2026年は所得税率が下がる人がいる。</b>基礎控除と給与所得控除が引き上げられたため、所得税率が10%から5%に下がる人は、上限額が前年より少し低くなることがあります。</li>
+      <li><b>2026年は所得税率が下がる人がいる。</b>基礎控除と給与所得控除が引き上げられたため、所得税率が10%から5%に下がる人は、上限額が前年より少し低くなることがあります。自分が対象かどうかは、上の結果に表示されます。</li>
       <li><b>2026年分は12月31日までに寄付。</b>上限は2026年1月〜12月に支払われる給料（年収）で決まるので、年末に向けて見込みを確認しておきましょう。</li>
       <li><b>副業がある人は申告に注意。</b>副業の所得が20万円を超えて確定申告をする場合、ワンストップ特例は使えないので、確定申告でふるさと納税も申告します。20万円以下でも住民税の申告をするときは、その申告にふるさと納税の寄付も必ず含めます（含めないとワンストップ特例が無効になります）。</li>
       <li><b>上限ぎりぎりは避ける。</b>年収の見込みがずれると上限も変わります。計算結果の9割までにとどめてください。</li>
@@ -98,6 +99,29 @@
     <p class="note"><span class="fkey ok"></span>上限7,000円以上（返礼品で得しやすい）　<span class="fkey ng"></span>7,000円未満（返礼品が2,000円分に届きにくい）</p>
     <p class="note">独身なら年収180万円前後、配偶者を扶養しているなら年収250万円前後から、返礼品の価値が自己負担の2,000円を上回りやすくなります。住民税がかかっていない年収では、上限は0円です。最低年収、年収80万円や250万円の場合、ボーナスの扱いは<a href="/kiji/furusato-nenshu-ikura/">「ふるさと納税は年収いくらから？」</a>で説明しています。</p>
     <p class="note">住宅ローン控除・医療費控除を受ける人や、年収850万円を超える人は、実際の上限との差が大きくなります。源泉徴収票の数字でのシミュレーションか、税理士への確認をおすすめします。年収1億円以上の人には別の上限があります。</p>
+    <h2 id="onestop">ワンストップ特例は使う？確定申告にする？</h2>
+    <p class="note">寄付したあとの手続きは、ワンストップ特例か確定申告のどちらかです。給与所得だけの会社員なら、手間の少ないワンストップ特例を使う人が多くなります。</p>
+    <div class="os-grid">
+      <div class="os-box ok">
+        <h3>ワンストップ特例を使う人</h3>
+        <ul>
+          <li>給料だけで、ほかに確定申告をする予定がない</li>
+          <li>寄付先の自治体が、1年で5つ以内</li>
+          <li>申請書を、2027年1月10日までに各自治体へ届けられる</li>
+        </ul>
+      </div>
+      <div class="os-box ng">
+        <h3>確定申告にする人</h3>
+        <ul>
+          <li>副業の所得が20万円を超える、または個人事業主</li>
+          <li>医療費控除や、住宅ローン控除の1年目で、確定申告をする</li>
+          <li>寄付先が6つ以上になった</li>
+          <li>申請書の期限に間に合わなかった</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">ワンストップ特例を出したあとで確定申告をすると、特例の申請は無効になり、寄付を確定申告に書く必要があります。副業の所得が20万円以下でも、住民税の申告をする場合は同じです。</p>
+    <p class="note">控除される合計額は、どちらの方法でも変わりません。ワンストップ特例では全額が翌年の住民税から引かれ、確定申告では所得税の還付と住民税の減額に分かれます。申請の細かい条件は、寄付先の自治体の案内で確認してください。</p>
   </section>
 
   <footer class="foot">

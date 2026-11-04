@@ -236,3 +236,12 @@ details.more[open] summary{margin-bottom:10px}
 .nx-ls span{font-size:13px;color:var(--sub)}
 .nx-p{margin:0;font-size:14px;line-height:1.7}
 @media (min-width:640px){.nx-ls{grid-template-columns:1fr 1fr}}
+
+.side-h{display:block;margin-top:6px;padding:8px 10px;border-radius:8px;background:var(--pen-soft)}
+
+.os-grid{display:grid;gap:10px;margin:10px 0}
+.os-box{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper)}
+.os-box h3{margin:0 0 6px;font-size:15px}
+.os-box ul{margin:0;padding-left:1.2em;font-size:14px;line-height:1.8}
+.os-box.ok{border-color:var(--navy)}
+@media (min-width:640px){.os-grid{grid-template-columns:1fr 1fr}}

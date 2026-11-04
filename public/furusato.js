@@ -26,13 +26,19 @@
     if (k <= 1950000) return 0.05; if (k <= 3300000) return 0.10; if (k <= 6950000) return 0.20;
     if (k <= 9000000) return 0.23; if (k <= 18000000) return 0.33; if (k <= 40000000) return 0.40; return 0.45;
   }
-  function compute(v) {
-    var ks = kyuyoShotoku(v.income);
+  function kyuyoOld(inc) { // 令和7年分（去年）：最低65万円
+    if (inc <= 650000) return 0;
+    if (inc < 1900000) return inc - 650000;
+    return kyuyoShotoku(inc);
+  }
+  function kisoOld(t) { return t <= 1320000 ? 950000 : t <= 3360000 ? 880000 : t <= 4890000 ? 680000 : t <= 6550000 ? 630000 : t <= 23500000 ? 580000 : 0; }
+  function compute(v, old) {
+    var ks = (old ? kyuyoOld : kyuyoShotoku)(v.income);
     var total = ks + Math.max(0, v.side);
     var shaho = v.shaho, ideco = v.ideco;
     var spouseOk = v.sp === "dep" && total <= 9000000;
     // 所得税
-    var dedIT = kisoIncomeTax(total) + shaho + ideco + (spouseOk ? 380000 : 0) + v.d16 * 380000 + v.d19 * 630000 + v.d23 * 380000;
+    var dedIT = (old ? kisoOld : kisoIncomeTax)(total) + shaho + ideco + (spouseOk ? 380000 : 0) + v.d16 * 380000 + v.d19 * 630000 + v.d23 * 380000;
     var kIT = Math.max(0, Math.floor((total - dedIT) / 1000) * 1000);
     var rate = taxRate(kIT);
     // 住民税
@@ -71,6 +77,19 @@
     var r = compute({ income: S.income, shaho: shahoVal(), sp: S.sp, d16: S.d16, d19: S.d19, d23: S.d23, ideco: S.ideco, side: S.side });
     $("limit").textContent = S.income ? (r.limit > 2000 ? "約 " + yen(r.limit) : "0円（住民税の所得割がかからないため）") : "—";
     $("safe").innerHTML = r.limit > 2000 ? "年収の見込みがずれても超えにくい額：<b>" + yen(Math.floor(r.limit * 0.9 / 1000) * 1000) + "</b> まで" : "";
+    var old = compute({ income: S.income, shaho: shahoVal(), sp: S.sp, d16: S.d16, d19: S.d19, d23: S.d23, ideco: S.ideco, side: S.side }, true);
+    var rn = $("rateNote"), p = function (x) { return Math.round(x * 100) + "%"; };
+    if (!S.income || r.limit <= 2000) rn.hidden = true;
+    else {
+      rn.hidden = false;
+      if (old.rate > r.rate) {
+        rn.className = "verdict near";
+        rn.innerHTML = '<p class="vh">あなたは「所得税率が下がる人」にあたります</p><p class="vs">所得税率が去年のルールの' + p(old.rate) + 'から' + p(r.rate) + 'に下がるため、上限額は去年のルールで計算した約' + yen(old.limit) + 'より低い約' + yen(r.limit) + 'になります。</p>';
+      } else {
+        rn.className = "verdict";
+        rn.innerHTML = '<p class="vh">所得税率は去年と同じです（' + p(r.rate) + '）</p><p class="vs">税率が下がる人にはあたらないので、上限額は去年のルールで計算した約' + yen(old.limit) + 'から大きくは変わりません。</p>';
+      }
+    }
     var zero = !!S.income && r.limit <= 2000;
     $("zeroNote").hidden = !zero; $("furuPr").hidden = zero;
     var sn = $("sideNote");
@@ -115,5 +134,6 @@
     $("useSide").textContent = "副業トラッカーの見込み（" + yen(v) + "）を入れました";
   });
 
+  $("openMore").addEventListener("click", function () { $("moreBox").open = true; });
   fill(); if (S.side > 0 || S.ideco > 0) $("moreBox").open = true; render();
 })();
