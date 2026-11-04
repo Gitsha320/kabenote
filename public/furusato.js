@@ -71,6 +71,8 @@
     var r = compute({ income: S.income, shaho: shahoVal(), sp: S.sp, d16: S.d16, d19: S.d19, d23: S.d23, ideco: S.ideco, side: S.side });
     $("limit").textContent = S.income ? (r.limit > 2000 ? "約 " + yen(r.limit) : "0円（住民税の所得割がかからないため）") : "—";
     $("safe").innerHTML = r.limit > 2000 ? "年収の見込みがずれても超えにくい額：<b>" + yen(Math.floor(r.limit * 0.9 / 1000) * 1000) + "</b> まで" : "";
+    var zero = !!S.income && r.limit <= 2000;
+    $("zeroNote").hidden = !zero; $("furuPr").hidden = zero;
     var sn = $("sideNote");
     if (S.side > 0) {
       sn.hidden = false;

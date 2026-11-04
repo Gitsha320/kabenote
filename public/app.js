@@ -107,6 +107,23 @@
     if (!S.goal || ids.indexOf(S.goal) < 0) S.goal = DEFAULT_GOAL[S.role];
     $("goal").innerHTML = ids.map(function (id) { var w = W[id]; return '<option value="' + id + '"' + (id === S.goal ? " selected" : "") + '>' + man(w.amt) + '：' + w.name + '</option>'; }).join("");
     $("answer").innerHTML = answer(c, W[S.goal]);
+    renderNext(c, ids);
+  }
+  function renderNext(c, ids) {
+    var card = $("nextCard");
+    if (S.sample || c.filled === 0) { card.hidden = true; return; }
+    var risky = ids.some(function (id) {
+      var w = W[id]; if (w.basis === "shaho" && shahoSelf()) return false;
+      return status(w, c.total[w.basis]).cls !== "ok";
+    });
+    var links = risky
+      ? [["/kiji/nenmatsu-shift/", "年末のシフト、あと何時間入れる？", "残りの金額から、入れる時間を計算する方法"],
+         ["/kiji/2026-nenshu-no-kabe/", "2026年の「年収の壁」まとめ", "超えたときに何が変わるかを、壁ごとに確認"]]
+      : [["#hayami", "年収の壁の早見表", "余裕のある壁も含めて、全部の基準を一覧で見る"],
+         ["/furusato/", "ふるさと納税の上限額", "年収の見込みから、寄付できる額を計算"]];
+    $("nx-h").textContent = risky ? "壁を超えそう、または超えています" : "今のところ、どの壁にも余裕があります";
+    $("nextList").innerHTML = links.map(function (l) { return '<li><a href="' + l[0] + '"><b>' + l[1] + '</b><span>' + l[2] + '</span></a></li>'; }).join("");
+    card.hidden = false;
   }
   function updatePlaceholders(c) {
     S.months.forEach(function (m, i) {

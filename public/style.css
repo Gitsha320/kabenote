@@ -228,3 +228,11 @@ details.more[open] summary{margin-bottom:10px}
 .pr-iprice small{color:var(--sub);margin-left:4px}
 .pr-inote{display:block;font-size:12.5px;color:var(--sub);margin-top:3px;line-height:1.6}
 .pr + .pr, .pr + aside{margin-top:14px}
+
+.next .nx-h{font-size:16px}
+.nx-ls{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.nx-ls a{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);background:var(--paper)}
+.nx-ls a:hover{border-color:var(--navy)}
+.nx-ls span{font-size:13px;color:var(--sub)}
+.nx-p{margin:0;font-size:14px;line-height:1.7}
+@media (min-width:640px){.nx-ls{grid-template-columns:1fr 1fr}}

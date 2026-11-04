@@ -50,6 +50,17 @@
     $("verdict").className = "verdict " + cls;
     $("verdict").innerHTML = '<p class="vh">' + head + '</p><p class="vs">' + sub + '</p>' + (notes.length ? '<ul>' + notes.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>" : "");
     $("answer").innerHTML = answer(c);
+    var nn = $("nextNote"), ad = $("kaikeiPr");
+    if (S.sample || c.n === 0) { nn.hidden = true; if (ad) ad.hidden = true; }
+    else if (over) {
+      nn.hidden = false;
+      nn.innerHTML = '申告に備えて、報酬と経費は毎月記録しておくと集計が楽になります。<a href="#kaikeiPr">会計ソフトの比較（PR）へ</a>　<a href="/kiji/fukugyo-keihi/">経費にできるもの</a>';
+      if (ad) ad.hidden = false;
+    } else {
+      nn.hidden = false;
+      nn.innerHTML = '経費にできるものは<a href="/kiji/fukugyo-keihi/">副業の経費にできるもの・できないもの</a>にまとめています。';
+      if (ad) ad.hidden = true;
+    }
   }
 
   function answer(c) {
