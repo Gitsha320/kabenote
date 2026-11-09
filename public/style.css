@@ -230,6 +230,7 @@ details.more[open] summary{margin-bottom:10px}
 .pr + .pr, .pr + aside{margin-top:14px}
 
 .next .nx-h{font-size:16px}
+.kfig{margin:12px 0}
 .nx-ls{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .nx-ls a{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);background:var(--paper)}
 .nx-ls a:hover{border-color:var(--navy)}
