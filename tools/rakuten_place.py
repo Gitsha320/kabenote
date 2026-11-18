@@ -81,9 +81,12 @@ def furusato_kiji():
     m = re.search(r'<p class="pr-l">.*?</p>', src, re.S)
     assert m, 'furusato page link not found'
     for path, key, anchor in [('kiji/furusato-nenshu-ikura/index.html', 'furuki', '<div class="kcta"><p>自分の年収'),
-                              ('kiji/furusato-onestop/index.html', 'furuos', '<div class="kcta"><p>寄付できる上限額')]:
+                              ('kiji/furusato-onestop/index.html', 'furuos', '<div class="kcta"><p>寄付できる上限額'),
+                              ('kiji/furusato-jougen-hayamihyo/index.html', 'furuhy', '<div class="kcta"><p>自分の年収・家族構成・副業'),
+                              ('kiji/furusato-part-fuyounai/index.html', 'furupt', '<div class="kcta"><p>自分の年収と家族構成から、上限額'),
+                              ('kiji/nencho-2026-toshu-betsu/index.html', 'furunc', '<div class="kcta"><p>年収と家族構成を入れると、自分の減税額')]:
         f = os.path.join(PUB, path); s = clean(open(f, encoding='utf-8').read())
-        b = aside(key, '上限額がわかったら、寄付先を選ぶ',
+        b = aside(key, 'ふるさと納税をするなら12月31日まで' if key == 'furunc' else '上限額がわかったら、寄付先を選ぶ',
                   '2026年分の寄付は12月31日までです。年末は申し込みが集中するので、早めに決めてください。楽天ふるさと納税なら、楽天市場と同じ感覚で返礼品を探せます。',
                   FURU[:3], '寄付額')
         b = b.replace(f'</aside><!--/pr:{key}-->', '\n    ' + m.group(0) + f'\n  </aside><!--/pr:{key}-->')
