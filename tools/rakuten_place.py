@@ -89,6 +89,13 @@ def furusato_kiji():
                               ('kiji/furusato-nenshu-300man/index.html', 'furu3', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
                               ('kiji/furusato-nenshu-400man/index.html', 'furu4', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
                               ('kiji/furusato-nenshu-500man/index.html', 'furu5', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-200man/index.html', 'furu200', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-250man/index.html', 'furu250', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-600man/index.html', 'furu600', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-700man/index.html', 'furu700', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-800man/index.html', 'furu800', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-nenshu-1000man/index.html', 'furu1000', '<div class="kcta"><p>自分の年収・家族構成・副業・iDeCoを入れて'),
+                              ('kiji/furusato-koujo-hanei-jiki/index.html', 'furukj', '<div class="kcta"><p>寄付できる上限額'),
                               ('kiji/furusato-henreihin-mokuhyo/index.html', 'furuhr', '<div class="kcta"><p>自分の上限額は、年収と家族構成から')]:
         f = os.path.join(PUB, path); s = clean(open(f, encoding='utf-8').read())
         b = aside(key, 'ふるさと納税をするなら12月31日まで' if key in ('furunc', 'furunk') else '上限額がわかったら、寄付先を選ぶ',
