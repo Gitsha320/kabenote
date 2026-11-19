@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://kabenote.pages.dev/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://kabenote.pages.dev/fukugyo/</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://kabenote.pages.dev/furusato/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://kabenote.pages.dev/nencho/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://kabenote.pages.dev/kiji/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/furusato/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/nencho/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://kabenote.pages.dev/kiji/2026-nenshu-no-kabe/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://kabenote.pages.dev/kiji/nenmatsu-shift/</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://kabenote.pages.dev/kiji/fukugyo-keihi/</loc><lastmod>2026-11-05</lastmod></url>
@@ -15,6 +15,12 @@
   <url><loc>https://kabenote.pages.dev/kiji/furusato-jougen-hayamihyo/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://kabenote.pages.dev/kiji/furusato-part-fuyounai/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://kabenote.pages.dev/kiji/nencho-2026-toshu-betsu/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/furusato-nenshu-300man/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/furusato-nenshu-400man/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/furusato-nenshu-500man/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/furusato-henreihin-mokuhyo/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/nencho-2026-kazoku-betsu/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://kabenote.pages.dev/kiji/nencho-kakutei-shinkoku-chigai/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://kabenote.pages.dev/about/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://kabenote.pages.dev/privacy/</loc><lastmod>2026-09-30</lastmod></url>
 </urlset>
