@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kabenote.pages.dev/sitemap.xml
+Sitemap: https://kabenote.pages.dev/sitemap.txt
